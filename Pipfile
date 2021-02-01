@@ -11,6 +11,7 @@ spotipy = "*"
 tensorflow = "*"
 jupyter = "*"
 sklearn = "*"
+plotly = "*"
 
 [requires]
 python_version = "3.8"
