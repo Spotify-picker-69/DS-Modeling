@@ -12,6 +12,7 @@ tensorflow = "*"
 jupyter = "*"
 sklearn = "*"
 plotly = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.8"
