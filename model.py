@@ -3,6 +3,7 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from scipy.spatial.distance import cdist
+import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.manifold import TSNE
 import plotly.express as px
@@ -105,3 +106,24 @@ def recommend_songs(song_list, df=df, n_songs=10):
 def get_recomendations(input):
   input_dict = {'name': str(input)}
   return recommend_songs([input_dict])
+
+def graph_against(input, n):
+  # input = whatever song is input, n= which song recommendation list to compare against
+    input_dict = {'name': str(input)}
+    ten_song, ssc, sd = recommend_songs([input_dict])
+
+    r = list(itertools.chain.from_iterable(ssc))
+
+    df = pd.DataFrame(dict(graph=number_cols, input=r, output=sd[n]))
+
+    ind = np.arange(len(df))
+    width = 0.4
+
+    fig, ax = plt.subplots()
+    ax.barh(ind, df.input, width, color='red', label=str(song))
+    ax.barh(ind + width, df.output, width, color='blue', label=ten_song[n]['name'])
+
+    ax.set(yticks=ind + width, yticklabels=df.graph, ylim=[2*width - 1, len(df)])
+    ax.legend()
+
+    return plt.show()

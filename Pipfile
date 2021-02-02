@@ -13,6 +13,7 @@ jupyter = "*"
 sklearn = "*"
 plotly = "*"
 python-dotenv = "*"
+matplotlib = "*"
 
 [requires]
 python_version = "3.8"
