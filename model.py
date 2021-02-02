@@ -103,5 +103,5 @@ def recommend_songs(song_list, df=df, n_songs=10):
   return rec_songs[metadata_cols].to_dict(orient='records')
 
 def get_recomendations(input):
-  input_dict = {'name': user_input[0]}
-  return recommend_songs([input])
+  input_dict = {'name': str(input)}
+  return recommend_songs([input_dict])
