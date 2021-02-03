@@ -87,6 +87,7 @@ def flatten_dict_list(dict_list):
   
 
 def recommend_songs(song_list, df=df, n_songs=10):
+  song_cluster_pipeline = pickle.load(open('cluster.pickle', 'rb'))
   metadata_cols = ['name', 'artists']
   song_dict = flatten_dict_list(song_list)
 
@@ -102,7 +103,7 @@ def recommend_songs(song_list, df=df, n_songs=10):
   ten_songs = rec_songs[metadata_cols].to_dict(orient='records')
   return ten_songs, scaled_song_center, scaled_data
 
-def get_recomendations(input):
+def get_recommendations(input):
   input_dict = {'name': str(input)}
   ten_songs, ssc, sd = recommend_songs([input_dict])
   
