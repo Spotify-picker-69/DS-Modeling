@@ -87,8 +87,6 @@ def flatten_dict_list(dict_list):
   
 
 def recommend_songs(song_list, df=df, n_songs=10):
-
-  song_cluster_pipeline = pickle.load(open("cluster.pickle", "rb"))
   metadata_cols = ['name', 'artists']
   song_dict = flatten_dict_list(song_list)
 
@@ -101,11 +99,14 @@ def recommend_songs(song_list, df=df, n_songs=10):
 
   rec_songs = df.iloc[index]
   rec_songs = rec_songs[~rec_songs['name'].isin(song_dict['name'])]
-  return rec_songs[metadata_cols].to_dict(orient='records')
+  ten_songs = rec_songs[metadata_cols].to_dict(orient='records')
+  return ten_songs, scaled_song_center, scaled_data
 
 def get_recomendations(input):
   input_dict = {'name': str(input)}
-  return recommend_songs([input_dict])
+  ten_songs, ssc, sd = recommend_songs([input_dict])
+  
+  return  "Here are ten song recommendations: {}".format(ten_songs)
 
 def graph_against(input, n):
   # input = whatever song is input, n= which song recommendation list to compare against
