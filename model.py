@@ -14,7 +14,7 @@ import os
 from os import getenv
 import pandas as pd
 import pickle
-
+import itertools
 
 df = pd.read_csv('spotify_df.csv')
 
@@ -111,6 +111,7 @@ def get_recommendations(input):
 
 def graph_against(input, n):
   # input = whatever song is input, n= which song recommendation list to compare against
+    n = n-1
     input_dict = {'name': str(input)}
     ten_song, ssc, sd = recommend_songs([input_dict])
 
@@ -122,7 +123,7 @@ def graph_against(input, n):
     width = 0.4
 
     fig, ax = plt.subplots()
-    ax.barh(ind, df.input, width, color='red', label=str(song))
+    ax.barh(ind, df.input, width, color='red', label=str(input))
     ax.barh(ind + width, df.output, width, color='blue', label=ten_song[n]['name'])
 
     ax.set(yticks=ind + width, yticklabels=df.graph, ylim=[2*width - 1, len(df)])
