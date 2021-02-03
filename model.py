@@ -107,7 +107,7 @@ def get_recommendations(input):
   input_dict = {'name': str(input)}
   ten_songs, ssc, sd = recommend_songs([input_dict])
   
-  return  "Here are ten song recommendations: {}".format(ten_songs)
+  return  ten_songs
 
 def graph_against(input, n):
   # input = whatever song is input, n= which song recommendation list to compare against
