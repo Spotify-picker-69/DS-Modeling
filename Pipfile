@@ -14,6 +14,11 @@ sklearn = "*"
 plotly = "*"
 python-dotenv = "*"
 matplotlib = "*"
+dash = "*"
+dash-bootstrap-components = "*"
+gunicorn = "*"
+joblib = "*"
+category-encoders = "*"
 
 [requires]
 python_version = "3.8"
